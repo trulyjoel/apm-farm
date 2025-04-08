@@ -93,6 +93,7 @@ export const DataSearch: React.FC = () => {
       dataIndex: 'apm_application_code',
       key: 'apm_application_code',
       sorter: (a, b) => a.apm_application_code.localeCompare(b.apm_application_code),
+      width: 100,
     },
     {
       title: 'Application Name',
