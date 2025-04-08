@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Table, Card } from 'antd';
+import { Input, Table, Card, Checkbox, Divider, Space } from 'antd';
 import type { TableColumnsType } from 'antd';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 interface DataItem {
   apm_application_code: string;
@@ -27,6 +28,14 @@ export const DataSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState<DataItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
+    apm_application_code: true,
+    application_name: true,
+    application_lifecycle: true,
+    application_contact: true,
+    application_contact_email: true,
+    application_description: true,
+  });
 
   useEffect(() => {
     // Load the JSON data
@@ -64,7 +73,14 @@ export const DataSearch: React.FC = () => {
     setSearchTerm(e.target.value);
   };
 
-  const columns: TableColumnsType<DataItem> = [
+  const handleColumnVisibilityChange = (e: CheckboxChangeEvent, columnKey: string) => {
+    setVisibleColumns({
+      ...visibleColumns,
+      [columnKey]: e.target.checked,
+    });
+  };
+
+  const allColumns: TableColumnsType<DataItem> = [
     {
       title: 'App Code',
       dataIndex: 'apm_application_code',
@@ -106,7 +122,42 @@ export const DataSearch: React.FC = () => {
       key: 'application_description',
       ellipsis: true,
     },
+    {
+      title: 'Critical Asset',
+      dataIndex: 'critical_information_asset',
+      key: 'critical_information_asset',
+    },
+    {
+      title: 'Security Assessment',
+      dataIndex: 'application_security_release_assessment_required',
+      key: 'application_security_release_assessment_required',
+    },
+    {
+      title: 'IT Manager',
+      dataIndex: 'it_manager',
+      key: 'it_manager',
+    },
+    {
+      title: 'IT VP',
+      dataIndex: 'it_vp',
+      key: 'it_vp',
+    },
+    {
+      title: 'User Interface',
+      dataIndex: 'user_interface',
+      key: 'user_interface',
+    },
+    {
+      title: 'US App',
+      dataIndex: 'isusapp',
+      key: 'isusapp',
+    },
   ];
+
+  // Filter columns based on visibility settings
+  const columns = allColumns.filter(column => 
+    visibleColumns[column.dataIndex as string]
+  );
 
   return (
     <Card title="Application Data Search" style={{ width: '100%' }}>
@@ -119,6 +170,20 @@ export const DataSearch: React.FC = () => {
         onChange={handleSearch}
         style={{ marginBottom: 20 }}
       />
+      
+      <Card title="Column Visibility" size="small" style={{ marginBottom: 20 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+          {allColumns.map(column => (
+            <Checkbox
+              key={column.key as string}
+              checked={!!visibleColumns[column.dataIndex as string]}
+              onChange={(e) => handleColumnVisibilityChange(e, column.dataIndex as string)}
+            >
+              {column.title as string}
+            </Checkbox>
+          ))}
+        </div>
+      </Card>
       
       <Table 
         columns={columns} 
