@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Table, Card, Checkbox, Divider, Space, Tag } from 'antd';
+import { Input, Table, Card, Tag } from 'antd';
 import type { TableColumnsType } from 'antd';
-import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 interface DataItem {
   apm_application_code: string;
@@ -29,14 +28,6 @@ export const DataSearch: React.FC = () => {
   const [filteredData, setFilteredData] = useState<DataItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [lifecycleFilters, setLifecycleFilters] = useState<string[]>(['Production']);
-  const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
-    apm_application_code: true,
-    application_name: true,
-    application_description: true,
-    application_lifecycle: true,
-    application_contact: true,
-    application_contact_email: true,
-  });
 
   useEffect(() => {
     // Load the JSON data
@@ -80,12 +71,6 @@ export const DataSearch: React.FC = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleColumnVisibilityChange = (e: CheckboxChangeEvent, columnKey: string) => {
-    setVisibleColumns({
-      ...visibleColumns,
-      [columnKey]: e.target.checked,
-    });
-  };
 
   const allColumns: TableColumnsType<DataItem> = [
     {
@@ -177,10 +162,8 @@ export const DataSearch: React.FC = () => {
     },
   ];
 
-  // Filter columns based on visibility settings
-  const columns = allColumns.filter(column => 
-    visibleColumns[column.dataIndex as string]
-  );
+  // Use all columns
+  const columns = allColumns;
 
   return (
     <Card title="Application Data Search" style={{ width: '100%' }}>
@@ -193,20 +176,6 @@ export const DataSearch: React.FC = () => {
         onChange={handleSearch}
         style={{ marginBottom: 20 }}
       />
-      
-      <Card title="Column Visibility" size="small" style={{ marginBottom: 20 }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-          {allColumns.map(column => (
-            <Checkbox
-              key={column.key as string}
-              checked={!!visibleColumns[column.dataIndex as string]}
-              onChange={(e) => handleColumnVisibilityChange(e, column.dataIndex as string)}
-            >
-              {column.title as string}
-            </Checkbox>
-          ))}
-        </div>
-      </Card>
       
       <Table 
         columns={columns} 
