@@ -158,16 +158,6 @@ export const DataSearch: React.FC = () => {
       },
     },
     {
-      title: 'IT Manager',
-      dataIndex: 'it_manager',
-      key: 'it_manager',
-    },
-    {
-      title: 'IT VP',
-      dataIndex: 'it_vp',
-      key: 'it_vp',
-    },
-    {
       title: 'User Interface',
       dataIndex: 'user_interface',
       key: 'user_interface',
@@ -245,8 +235,6 @@ export const DataSearch: React.FC = () => {
                 </Tag>
               </p>
               <p><strong>Contact Title:</strong> {record.application_contact_title}</p>
-              <p><strong>IT Manager:</strong> {record.it_manager} ({record.itmanageremail})</p>
-              <p><strong>IT VP:</strong> {record.it_vp} ({record.itvpemail})</p>
               <p><strong>User Interface:</strong> {record.user_interface}</p>
               <p>
                 <strong>US App:</strong>{' '}
