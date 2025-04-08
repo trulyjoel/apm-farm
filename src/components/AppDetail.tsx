@@ -54,7 +54,7 @@ export const AppDetail: React.FC = () => {
     const colorMap: Record<string, string> = {
       'Internally Facing': 'lime',
       'Externally Facing': 'gold',
-      'Both Internally and Externally Facing': 'orange'
+      'Both Externally and Internally Facing': 'orange'
     };
     
     const color = colorMap[value] || 'cyan';

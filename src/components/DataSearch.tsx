@@ -160,7 +160,7 @@ export const DataSearch: React.FC = () => {
       filters: [
         { text: 'Internally Facing', value: 'Internally Facing' },
         { text: 'Externally Facing', value: 'Externally Facing' },
-        { text: 'Both Internally and Externally Facing', value: 'Both Internally and Externally Facing' },
+        { text: 'Both Externally and Internally Facing', value: 'Both Externally and Internally Facing' },
       ],
       onFilter: (value, record) => record.user_interface === value,
       render: (value: string) => {
@@ -170,7 +170,7 @@ export const DataSearch: React.FC = () => {
         const colorMap: Record<string, string> = {
           'Internally Facing': 'lime',
           'Externally Facing': 'gold',
-          'Both Internally and Externally Facing': 'orange'
+          'Both Externally and Internally Facing': 'orange'
         };
         
         const color = colorMap[value] || 'cyan';
@@ -244,7 +244,7 @@ export const DataSearch: React.FC = () => {
                   const colorMap: Record<string, string> = {
                     'Internally Facing': 'lime',
                     'Externally Facing': 'gold',
-                    'Both Internally and Externally Facing': 'orange'
+                    'Both Externally and Internally Facing': 'orange'
                   };
                   
                   const color = colorMap[value] || 'cyan';
