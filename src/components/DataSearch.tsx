@@ -106,11 +106,16 @@ export const DataSearch: React.FC = () => {
       dataIndex: 'application_contact',
       key: 'application_contact',
       sorter: (a, b) => a.application_contact.localeCompare(b.application_contact),
-    },
-    {
-      title: 'Contact Email',
-      dataIndex: 'application_contact_email',
-      key: 'application_contact_email',
+      render: (text, record) => (
+        <>
+          {text}{' '}
+          {record.application_contact_email && (
+            <a href={`mailto:${record.application_contact_email}`}>
+              ({record.application_contact_email})
+            </a>
+          )}
+        </>
+      ),
     },
     {
       title: 'Critical Asset',
