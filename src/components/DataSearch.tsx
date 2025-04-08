@@ -146,6 +146,22 @@ export const DataSearch: React.FC = () => {
       title: 'User Interface',
       dataIndex: 'user_interface',
       key: 'user_interface',
+      render: (value: string) => {
+        if (!value) return <Tag color="default">Unknown</Tag>;
+        
+        // Map different UI types to different colors
+        const colorMap: Record<string, string> = {
+          'Web': 'blue',
+          'Mobile': 'purple',
+          'Desktop': 'geekblue',
+          'API': 'volcano',
+          'CLI': 'magenta',
+          'None': 'default'
+        };
+        
+        const color = colorMap[value] || 'cyan';
+        return <Tag color={color}>{value}</Tag>;
+      },
     },
     {
       title: 'US App',
@@ -204,7 +220,26 @@ export const DataSearch: React.FC = () => {
                 </Tag>
               </p>
               <p><strong>Contact Title:</strong> {record.application_contact_title}</p>
-              <p><strong>User Interface:</strong> {record.user_interface}</p>
+              <p>
+                <strong>User Interface:</strong>{' '}
+                {(() => {
+                  const value = record.user_interface;
+                  if (!value) return <Tag color="default">Unknown</Tag>;
+                  
+                  // Map different UI types to different colors
+                  const colorMap: Record<string, string> = {
+                    'Web': 'blue',
+                    'Mobile': 'purple',
+                    'Desktop': 'geekblue',
+                    'API': 'volcano',
+                    'CLI': 'magenta',
+                    'None': 'default'
+                  };
+                  
+                  const color = colorMap[value] || 'cyan';
+                  return <Tag color={color}>{value}</Tag>;
+                })()}
+              </p>
               <p>
                 <strong>US App:</strong>{' '}
                 <Tag color={record.isusapp?.toLowerCase() === 'yes' ? 'blue' : 'gray'}>
