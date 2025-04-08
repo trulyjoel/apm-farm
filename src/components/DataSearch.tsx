@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Table, Card, Checkbox, Divider, Space } from 'antd';
+import { Input, Table, Card, Checkbox, Divider, Space, Tag } from 'antd';
 import type { TableColumnsType } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
@@ -135,11 +135,27 @@ export const DataSearch: React.FC = () => {
       title: 'Critical Asset',
       dataIndex: 'critical_information_asset',
       key: 'critical_information_asset',
+      render: (value: string) => {
+        const isYes = value?.toLowerCase() === 'yes';
+        return (
+          <Tag color={isYes ? 'red' : 'green'}>
+            {isYes ? 'Yes' : 'No'}
+          </Tag>
+        );
+      },
     },
     {
       title: 'Security Assessment',
       dataIndex: 'application_security_release_assessment_required',
       key: 'application_security_release_assessment_required',
+      render: (value: string) => {
+        const isYes = value?.toLowerCase() === 'yes';
+        return (
+          <Tag color={isYes ? 'orange' : 'cyan'}>
+            {isYes ? 'Yes' : 'No'}
+          </Tag>
+        );
+      },
     },
     {
       title: 'IT Manager',
@@ -160,6 +176,14 @@ export const DataSearch: React.FC = () => {
       title: 'US App',
       dataIndex: 'isusapp',
       key: 'isusapp',
+      render: (value: string) => {
+        const isYes = value?.toLowerCase() === 'yes';
+        return (
+          <Tag color={isYes ? 'blue' : 'gray'}>
+            {isYes ? 'Yes' : 'No'}
+          </Tag>
+        );
+      },
     },
   ];
 
@@ -208,13 +232,28 @@ export const DataSearch: React.FC = () => {
           expandedRowRender: (record) => (
             <div style={{ margin: 0 }}>
               <p><strong>Description:</strong> {record.application_description}</p>
-              <p><strong>Critical Information Asset:</strong> {record.critical_information_asset}</p>
-              <p><strong>Security Assessment Required:</strong> {record.application_security_release_assessment_required}</p>
+              <p>
+                <strong>Critical Information Asset:</strong>{' '}
+                <Tag color={record.critical_information_asset?.toLowerCase() === 'yes' ? 'red' : 'green'}>
+                  {record.critical_information_asset?.toLowerCase() === 'yes' ? 'Yes' : 'No'}
+                </Tag>
+              </p>
+              <p>
+                <strong>Security Assessment Required:</strong>{' '}
+                <Tag color={record.application_security_release_assessment_required?.toLowerCase() === 'yes' ? 'orange' : 'cyan'}>
+                  {record.application_security_release_assessment_required?.toLowerCase() === 'yes' ? 'Yes' : 'No'}
+                </Tag>
+              </p>
               <p><strong>Contact Title:</strong> {record.application_contact_title}</p>
               <p><strong>IT Manager:</strong> {record.it_manager} ({record.itmanageremail})</p>
               <p><strong>IT VP:</strong> {record.it_vp} ({record.itvpemail})</p>
               <p><strong>User Interface:</strong> {record.user_interface}</p>
-              <p><strong>US App:</strong> {record.isusapp}</p>
+              <p>
+                <strong>US App:</strong>{' '}
+                <Tag color={record.isusapp?.toLowerCase() === 'yes' ? 'blue' : 'gray'}>
+                  {record.isusapp?.toLowerCase() === 'yes' ? 'Yes' : 'No'}
+                </Tag>
+              </p>
             </div>
           ),
         }}
