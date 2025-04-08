@@ -72,14 +72,9 @@ export const DataSearch: React.FC = () => {
       dataIndex: 'apm_application_code',
       key: 'apm_application_code',
       sorter: (a, b) => a.apm_application_code.localeCompare(b.apm_application_code),
-      width: 150,
+      width: 120,
       render: (text) => (
-        <Space size="small">
-          <Link to={`/app/${text}`}>{text}</Link>
-          <Button type="link" size="small" href={`/api/app/${text}`} target="_blank">
-            API
-          </Button>
-        </Space>
+        <Link to={`/app/${text}`}>{text}</Link>
       ),
     },
     {
