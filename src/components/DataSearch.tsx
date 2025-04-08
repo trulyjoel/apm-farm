@@ -32,10 +32,10 @@ export const DataSearch: React.FC = () => {
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({
     apm_application_code: true,
     application_name: true,
+    application_description: true,
     application_lifecycle: true,
     application_contact: true,
     application_contact_email: true,
-    application_description: true,
   });
 
   useEffect(() => {
@@ -102,6 +102,12 @@ export const DataSearch: React.FC = () => {
       sorter: (a, b) => a.application_name.localeCompare(b.application_name),
     },
     {
+      title: 'Description',
+      dataIndex: 'application_description',
+      key: 'application_description',
+      ellipsis: true,
+    },
+    {
       title: 'Lifecycle',
       dataIndex: 'application_lifecycle',
       key: 'application_lifecycle',
@@ -124,12 +130,6 @@ export const DataSearch: React.FC = () => {
       title: 'Contact Email',
       dataIndex: 'application_contact_email',
       key: 'application_contact_email',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'application_description',
-      key: 'application_description',
-      ellipsis: true,
     },
     {
       title: 'Critical Asset',
