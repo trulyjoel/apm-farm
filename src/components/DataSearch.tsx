@@ -27,7 +27,6 @@ export const DataSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState<DataItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [lifecycleFilters, setLifecycleFilters] = useState<string[]>(['Production']);
 
   useEffect(() => {
     // Load the JSON data
@@ -35,9 +34,7 @@ export const DataSearch: React.FC = () => {
       .then(response => response.json())
       .then(jsonData => {
         setData(jsonData);
-        // Apply default Production filter
-        const filtered = jsonData.filter(item => item.application_lifecycle === 'Production');
-        setFilteredData(filtered);
+        setFilteredData(jsonData);
         setLoading(false);
       })
       .catch(error => {
@@ -49,11 +46,7 @@ export const DataSearch: React.FC = () => {
   useEffect(() => {
     // Filter data when search term changes
     if (searchTerm.trim() === '') {
-      // Apply lifecycle filters if no search term
-      const filtered = data.filter(item => 
-        lifecycleFilters.length === 0 || lifecycleFilters.includes(item.application_lifecycle)
-      );
-      setFilteredData(filtered);
+      setFilteredData(data);
     } else {
       const lowercasedSearch = searchTerm.toLowerCase();
       const results = data.filter(item => {
@@ -102,7 +95,6 @@ export const DataSearch: React.FC = () => {
         { text: 'Production', value: 'Production' },
         { text: 'Retired', value: 'Retired' },
       ],
-      defaultFilteredValue: ['Production'],
       onFilter: (value, record) => record.application_lifecycle === value,
     },
     {
@@ -222,11 +214,6 @@ export const DataSearch: React.FC = () => {
         dataSource={filteredData.map(item => ({ ...item, key: item.apm_application_code }))} 
         loading={loading}
         pagination={{ pageSize: 10 }}
-        onChange={(pagination, filters) => {
-          if (filters.application_lifecycle) {
-            setLifecycleFilters(filters.application_lifecycle as string[]);
-          }
-        }}
         expandable={{
           expandedRowRender: (record) => (
             <div style={{ margin: 0 }}>
