@@ -94,7 +94,9 @@ export const AppDetail: React.FC = () => {
 
       <div style={{ marginTop: '20px' }}>
         <h3>API Endpoint</h3>
-        <code>{window.location.origin}/api/app/{app.apm_application_code}</code>
+        <a href={`/api/app/${app.apm_application_code}`} target="_blank" rel="noopener noreferrer">
+          <code>{window.location.origin}/api/app/{app.apm_application_code}</code>
+        </a>
         <p style={{ marginTop: '10px' }}>
           This endpoint returns the JSON data for this application.
         </p>

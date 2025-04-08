@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import { DataSearch } from './components/DataSearch';
 import { AppDetail } from './components/AppDetail';
+import { ApiAppEndpoint } from './components/ApiAppEndpoint';
 import './index.css';
 
 const { Header, Content, Footer } = Layout;
@@ -18,7 +19,8 @@ const App = () => {
         <Content style={{ padding: '20px 50px' }}>
           <Routes>
             <Route path="/" element={<DataSearch />} />
-            <Route path="/api/app/:appCode" element={<AppDetail />} />
+            <Route path="/app/:appCode" element={<AppDetail />} />
+            <Route path="/api/app/:appCode" element={<ApiAppEndpoint />} />
           </Routes>
         </Content>
         <Footer style={{ textAlign: 'center' }}>

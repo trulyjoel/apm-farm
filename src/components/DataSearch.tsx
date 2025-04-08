@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Table, Card, Tag } from 'antd';
+import { Input, Table, Card, Tag, Button, Space } from 'antd';
+import { Link } from 'react-router-dom';
 import type { TableColumnsType } from 'antd';
 
 interface DataItem {
@@ -71,7 +72,15 @@ export const DataSearch: React.FC = () => {
       dataIndex: 'apm_application_code',
       key: 'apm_application_code',
       sorter: (a, b) => a.apm_application_code.localeCompare(b.apm_application_code),
-      width: 100,
+      width: 150,
+      render: (text) => (
+        <Space size="small">
+          <Link to={`/app/${text}`}>{text}</Link>
+          <Button type="link" size="small" href={`/api/app/${text}`} target="_blank">
+            API
+          </Button>
+        </Space>
+      ),
     },
     {
       title: 'Application Name',
