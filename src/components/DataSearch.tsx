@@ -120,6 +120,11 @@ export const DataSearch: React.FC = () => {
       title: 'Critical Asset',
       dataIndex: 'critical_information_asset',
       key: 'critical_information_asset',
+      filters: [
+        { text: 'Yes', value: 'yes' },
+        { text: 'No', value: 'no' },
+      ],
+      onFilter: (value, record) => record.critical_information_asset?.toLowerCase() === value,
       render: (value: string) => {
         const isYes = value?.toLowerCase() === 'yes';
         return (
@@ -133,6 +138,11 @@ export const DataSearch: React.FC = () => {
       title: 'Security Assessment',
       dataIndex: 'application_security_release_assessment_required',
       key: 'application_security_release_assessment_required',
+      filters: [
+        { text: 'Yes', value: 'yes' },
+        { text: 'No', value: 'no' },
+      ],
+      onFilter: (value, record) => record.application_security_release_assessment_required?.toLowerCase() === value,
       render: (value: string) => {
         const isYes = value?.toLowerCase() === 'yes';
         return (
@@ -146,6 +156,15 @@ export const DataSearch: React.FC = () => {
       title: 'User Interface',
       dataIndex: 'user_interface',
       key: 'user_interface',
+      filters: [
+        { text: 'Web', value: 'Web' },
+        { text: 'Mobile', value: 'Mobile' },
+        { text: 'Desktop', value: 'Desktop' },
+        { text: 'API', value: 'API' },
+        { text: 'CLI', value: 'CLI' },
+        { text: 'None', value: 'None' },
+      ],
+      onFilter: (value, record) => record.user_interface === value,
       render: (value: string) => {
         if (!value) return <Tag color="default">Unknown</Tag>;
         
@@ -167,6 +186,11 @@ export const DataSearch: React.FC = () => {
       title: 'US App',
       dataIndex: 'isusapp',
       key: 'isusapp',
+      filters: [
+        { text: 'Yes', value: 'yes' },
+        { text: 'No', value: 'no' },
+      ],
+      onFilter: (value, record) => record.isusapp?.toLowerCase() === value,
       render: (value: string) => {
         const isYes = value?.toLowerCase() === 'yes';
         return (
