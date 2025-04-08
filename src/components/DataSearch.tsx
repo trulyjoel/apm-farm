@@ -158,12 +158,6 @@ export const DataSearch: React.FC = () => {
       dataIndex: 'user_interface',
       key: 'user_interface',
       filters: [
-        { text: 'Web', value: 'Web' },
-        { text: 'Mobile', value: 'Mobile' },
-        { text: 'Desktop', value: 'Desktop' },
-        { text: 'API', value: 'API' },
-        { text: 'CLI', value: 'CLI' },
-        { text: 'None', value: 'None' },
         { text: 'Internally Facing', value: 'Internally Facing' },
         { text: 'Externally Facing', value: 'Externally Facing' },
         { text: 'Both Internally and Externally Facing', value: 'Both Internally and Externally Facing' },
@@ -174,12 +168,6 @@ export const DataSearch: React.FC = () => {
         
         // Map different UI types to different colors
         const colorMap: Record<string, string> = {
-          'Web': 'blue',
-          'Mobile': 'purple',
-          'Desktop': 'geekblue',
-          'API': 'volcano',
-          'CLI': 'magenta',
-          'None': 'default',
           'Internally Facing': 'lime',
           'Externally Facing': 'gold',
           'Both Internally and Externally Facing': 'orange'
@@ -254,12 +242,6 @@ export const DataSearch: React.FC = () => {
                   
                   // Map different UI types to different colors
                   const colorMap: Record<string, string> = {
-                    'Web': 'blue',
-                    'Mobile': 'purple',
-                    'Desktop': 'geekblue',
-                    'API': 'volcano',
-                    'CLI': 'magenta',
-                    'None': 'default',
                     'Internally Facing': 'lime',
                     'Externally Facing': 'gold',
                     'Both Internally and Externally Facing': 'orange'

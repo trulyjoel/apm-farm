@@ -52,12 +52,6 @@ export const AppDetail: React.FC = () => {
     if (!value) return <Tag color="default">Unknown</Tag>;
     
     const colorMap: Record<string, string> = {
-      'Web': 'blue',
-      'Mobile': 'purple',
-      'Desktop': 'geekblue',
-      'API': 'volcano',
-      'CLI': 'magenta',
-      'None': 'default',
       'Internally Facing': 'lime',
       'Externally Facing': 'gold',
       'Both Internally and Externally Facing': 'orange'
