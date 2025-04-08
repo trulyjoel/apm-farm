@@ -164,6 +164,9 @@ export const DataSearch: React.FC = () => {
         { text: 'API', value: 'API' },
         { text: 'CLI', value: 'CLI' },
         { text: 'None', value: 'None' },
+        { text: 'Internally Facing', value: 'Internally Facing' },
+        { text: 'Externally Facing', value: 'Externally Facing' },
+        { text: 'Both Internally and Externally Facing', value: 'Both Internally and Externally Facing' },
       ],
       onFilter: (value, record) => record.user_interface === value,
       render: (value: string) => {
@@ -176,7 +179,10 @@ export const DataSearch: React.FC = () => {
           'Desktop': 'geekblue',
           'API': 'volcano',
           'CLI': 'magenta',
-          'None': 'default'
+          'None': 'default',
+          'Internally Facing': 'lime',
+          'Externally Facing': 'gold',
+          'Both Internally and Externally Facing': 'orange'
         };
         
         const color = colorMap[value] || 'cyan';
@@ -253,7 +259,10 @@ export const DataSearch: React.FC = () => {
                     'Desktop': 'geekblue',
                     'API': 'volcano',
                     'CLI': 'magenta',
-                    'None': 'default'
+                    'None': 'default',
+                    'Internally Facing': 'lime',
+                    'Externally Facing': 'gold',
+                    'Both Internally and Externally Facing': 'orange'
                   };
                   
                   const color = colorMap[value] || 'cyan';

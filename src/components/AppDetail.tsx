@@ -57,7 +57,10 @@ export const AppDetail: React.FC = () => {
       'Desktop': 'geekblue',
       'API': 'volcano',
       'CLI': 'magenta',
-      'None': 'default'
+      'None': 'default',
+      'Internally Facing': 'lime',
+      'Externally Facing': 'gold',
+      'Both Internally and Externally Facing': 'orange'
     };
     
     const color = colorMap[value] || 'cyan';
